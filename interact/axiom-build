@@ -29,34 +29,8 @@ if [ -z "$provisioner" ]; then
     echo -e "${Green}ReconFTW: includes all tools in ReconFTW and works with most modules. Recommended for ReconFTW.${Color_Off}"
     echo -e "${Yellow}Barebones: a decently secure base install, comes with Docker, Go-lang, Interlace and nmap installed. Recommended for templating.${Color_Off}"
     echo -e "${Green}Custom: custom Packer JSON you provide.${Color_Off}"
-    echo -e -n "${Blue}Which axiom provisioner would you like to use: default, reconftw, barebones, custom? (option: press enter to select Default) \n>>${Color_Off}"
-
-    read ans
-    if [[ $ans == "default" ]] || [[ $ans == "Default" ]]; then 
-              echo -e "${Green}Selected provisioner option 'Default'${Color_Off}"
-              provisioner="default"
-    fi
-    if [[ $ans == "reconftw" ]] ||  [[ $ans == "Reconftw" ]] ||  [[ $ans == "ReconFTW" ]]; then
-               echo -e "${Green}Selected provisioner option 'ReconFTW'${Color_Off}"
-               provisioner="reconftw"
-    fi
-    if [[ $ans == "barebones" ]] || [[ $ans == "Barebones" ]]; then
-               echo -e "${Green}Selected provisioner option 'Barebones'${Color_Off}"
-               provisioner="barebones"
-    fi
-    if [[ $ans == "custom" ]] || [[ $ans == "Custom" ]]; then
-               echo -e "${Red}Your Packer JSON must be located in "$AXIOM_PATH/images/provisioners/". Make sure to move it.${Color_Off}"
-               echo -e "${Green}Listing all provisioners available in "$AXIOM_PATH/images/provisioners/" ...${Color_Off}"
-               ls -1 $AXIOM_PATH/images/provisioners/ | sort -u | sed -e 's/\.json$//' | grep -v -w 'ibm-base-image-create.sh' 
-               echo -e -n "${Green}Enter the provisioner filename. \n>>${Color_Off}"
-               read ans
-               provisioner=$ans
-               echo -e "${Green}Selected provisioner option 'Custom', using $ans ${Color_Off}"
-    fi
-    if [[ $ans == "" ]]; then
-	       echo -e "${Green}Selected default provisioner option 'Default'${Color_Off}"
-               provisioner="default"
-    fi
+    echo -e "${Green}Selected provisioner option 'Default'${Color_Off}"
+    provisioner="default"
 fi
 
 ############################################################################################################
